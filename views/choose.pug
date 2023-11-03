@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  script.
+    
+
+  h1= title
+
+  - const image_names = ["don1.jpg", "don2.jpg", "don3.jpg", "don4.jpg", "don5.jpg"]
+
+  - for(let i=0; i < 3; i++){
+    - let ran = Math.floor(Math.random()*5)
+    - let sImg = image_names[ran]
+    img(src='/images/' + sImg, alt="Donut Image", height="300px", width="300px")
+  - }

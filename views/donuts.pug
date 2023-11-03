@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  script.
+    class Donuts {
+      constructor(donutType, numberOfDonuts, xPrice){
+        this.donutType = donutType
+        this.numberOfDonuts = numberOfDonuts
+        this.xPrice = xPrice
+      }
+    }
+
+  h1= title
+  .container-fluid
+    .row
+      each donut in results
+        .col-sm-2
+          h3= donut.donutType
+          p= 'Number of Donuts: ' + donut.numberOfDonuts
+          p= 'Price: $' + donut.xPrice
