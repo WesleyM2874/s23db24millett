@@ -1,3 +1,9 @@
+require('dotenv').config();
+const connectionString =
+process.env.MONGO_CON
+mongoose = require('mongoose');
+mongoose.connect(connectionString);
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
