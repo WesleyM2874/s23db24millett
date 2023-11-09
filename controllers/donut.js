@@ -8,7 +8,7 @@ exports.donut_detail = function(req, res) {
 res.send('NOT IMPLEMENTED: Donut detail: ' + req.params.id);
 };
 // Handle Costume create on POST.
-exports.cdonut_create_post = function(req, res) {
+exports.donut_create_post = function(req, res) {
 res.send('NOT IMPLEMENTED: Donut create POST');
 };
 // Handle Costume delete form on DELETE.
