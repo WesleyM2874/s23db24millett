@@ -31,6 +31,16 @@ async function recreateDB(){
   ).catch(err=>{
     console.error(err)
   });
+  instance2.save().then(doc=>{
+    console.log("Second object saved")}
+  ).catch(err=>{
+    console.error(err)
+  });
+  instance3.save().then(doc=>{
+    console.log("Third object saved")}
+  ).catch(err=>{
+    console.error(err)
+  });
 }
 
 let reseed = true;
