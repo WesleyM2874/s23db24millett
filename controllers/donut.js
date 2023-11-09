@@ -1,5 +1,5 @@
 var Donut = require('../models/donut');
-// List of all Costumes
+
 exports.donut_list = function(req, res) {
 res.send('NOT IMPLEMENTED: Donut list');
 };
@@ -19,3 +19,28 @@ res.send('NOT IMPLEMENTED: Donut delete DELETE ' + req.params.id);
 exports.donut_update_put = function(req, res) {
 res.send('NOT IMPLEMENTED: Donut update PUT' + req.params.id);
 };
+
+// List of all Costumes
+exports.donut_list = async function(req, res) {
+    try{
+        theDonuts = await Donut.find();
+        res.send(theDonuts);
+    }
+    catch(err){
+        res.status(500);
+        res.send(`{"error": ${err}}`);
+    }
+};
+
+// VIEWS
+// Handle a show all view
+exports.donut_view_all_Page = async function(req, res) {
+    try{
+        theDonuts = await Donut.find();
+        res.render('donuts', { title: 'Donut Search Results', results: theDonuts });
+    }
+    catch(err){
+        res.status(500);
+        res.send(`{"error": ${err}}`);
+    }
+}
