@@ -36,8 +36,16 @@ exports.donut_create_post = async function (req, res) {
     }
 };
 // Handle Costume delete form on DELETE.
-exports.donut_delete = function (req, res) {
-    res.send('NOT IMPLEMENTED: Donut delete DELETE ' + req.params.id);
+exports.donut_delete = async function (req, res) {
+    console.log("Delete " + req.params.id);
+    try {
+        result = await Donut.findByIdAndDelete(req.params.id);
+        console.log("Removed " + result);
+        res.send(result);
+    } catch(err){
+        res.status(500);
+        res.send(`{"error": Error deleting ${err}}`);
+    }
 };
 // Handle Costume update form on PUT.
 exports.donut_update_put = async function (req, res) {
