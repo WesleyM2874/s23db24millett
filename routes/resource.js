@@ -21,4 +21,6 @@ router.get('/donuts', donut_controller.donut_list);
 router.get('/detail', donut_controller.donut_view_one_Page);
 // GET create donut page
 router.get('/create', donut_controller.donut_create_Page);
+// GET create update page
+router.get('/update', donut_controller.donut_update_Page);
 module.exports = router;

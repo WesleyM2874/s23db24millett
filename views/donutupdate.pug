@@ -1,18 +1,28 @@
 extends layout 
 
 block content 
-    h1=title 
+    h1=title
 
-    form(id="DonutForm", action="/resource/donuts", method="POST")
+    - let donutid = toShow._id
+    - let donut_type = toShow.donut_type
+    - let num = toShow.num
+    - let price = toShow.price
+
+    div.row(class='mb-2')
+        div.mr-1 ID is:
+        div #{donutid}
+    - let actionid = "/resource/donuts/" + donutid
+
+    form(id="DonutForm", action=actionid, method="PUT")
         div.form-group
             label.donutAttr(for='donut_type') Donut type
-            input#donut_type(type='text', name='donut_type')
+            input#donut_type(type='text', name='donut_type', value='donut_type')
         div.form-group
             label.donutAttr(for='num') Donut num
-            input#num(type='text', name='num')
+            input#num(type='text', name='num', value='num')
         div.form-group
             label.donutAttr(for='price') Donut price 
-            input#price(type='text', name='price')
+            input#price(type='text', name='price', value='price')
         input(type='submit')
     
     script.
@@ -21,7 +31,7 @@ block content
             // TODO do something to show form is being submitted
             alert("Form is being submitted");
             fetch(event.target.action, {
-                method: 'POST',
+                method: 'PUT',
                 body: new URLSearchParams(new FormData(event.target)) //event.target is the form
             }).then((resp) => {
                 return resp.json(); //or resp.text() or whatever the server sends

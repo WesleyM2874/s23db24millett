@@ -115,3 +115,16 @@ exports.donut_create_Page = function (req, res){
         res.send(`{'error': '${err}'}`)
     }
 }
+
+// Handle building the view for updating a donut
+// query provides the id
+exports.donut_update_Page = async function (req, res){
+    console.log("update view for item " + req.query.id);
+    try {
+        let result = await Donut.findById(req.query.id);
+        res.render('donutupdate', { title: 'Donut Update', toShow: result });
+    } catch(err){
+        res.status(500);
+        res.send(`{'error': '${err}'}`);
+    }
+}
