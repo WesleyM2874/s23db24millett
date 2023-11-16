@@ -67,7 +67,7 @@ exports.donut_update_put = async function (req, res) {
 // List of all Costumes
 exports.donut_list = async function (req, res) {
     try {
-        theDonuts = await Donut.find();
+        results = await Donut.find();
         res.send(theDonuts);
     }
     catch (err) {

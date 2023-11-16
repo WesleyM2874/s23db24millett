@@ -3,18 +3,23 @@ extends layout
 block content
   script.
     class Donuts {
-      constructor(donutType, numberOfDonuts, xPrice){
-        this.donutType = donutType
-        this.numberOfDonuts = numberOfDonuts
-        this.xPrice = xPrice
+      constructor(donut_type, num, price){
+        this.donut_type = donut_type
+        this.num = num
+        this.price = price
       }
     }
 
   h1= title
-  .container-fluid
-    .row
+
+  div(class="container-fluid")
+    div(class="row m-1")
       each donut in results
-        .col-sm-2
-          h3= donut.donutType
-          p= 'Number of Donuts: ' + donut.numberOfDonuts
-          p= 'Price: $' + donut.xPrice
+        - let destination = `dispatch(\"/donuts/update?id=${donut._id}\")`
+        div(class="row-sm-2", class="m-1") Item #{donut.donut_type}(#{donut.num}) is #{donut.price}
+          button.btn(class="btn-primary m1-1", onclick=destination) Update
+
+  script.
+    function dispatch(path){
+      window.location.href=path
+    }
