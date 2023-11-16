@@ -23,4 +23,6 @@ router.get('/detail', donut_controller.donut_view_one_Page);
 router.get('/create', donut_controller.donut_create_Page);
 // GET create update page
 router.get('/update', donut_controller.donut_update_Page);
+// GET delete donut page
+router.get('/delete', donut_controller.donut_delete_Page);
 module.exports = router;
