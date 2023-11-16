@@ -19,4 +19,6 @@ router.get('/donuts/:id', donut_controller.donut_detail);
 router.get('/donuts', donut_controller.donut_list);
 // GET detail donuts page
 router.get('/detail', donut_controller.donut_view_one_Page);
+// GET create donut page
+router.get('/create', donut_controller.donut_create_Page);
 module.exports = router;
