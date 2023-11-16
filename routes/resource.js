@@ -17,4 +17,6 @@ router.put('/donuts/:id', donut_controller.donut_update_put);
 router.get('/donuts/:id', donut_controller.donut_detail);
 // GET request for list of all Costume items.
 router.get('/donuts', donut_controller.donut_list);
+// GET detail donuts page
+router.get('/detail', donut_controller.donut_view_one_Page);
 module.exports = router;

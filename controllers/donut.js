@@ -1,8 +1,5 @@
 var Donut = require('../models/donut');
 
-exports.donut_list = function (req, res) {
-    res.send('NOT IMPLEMENTED: Donut list');
-};
 // for a specific Costume.
 exports.donut_detail = async function (req, res) {
     try {
@@ -89,5 +86,18 @@ exports.donut_view_all_Page = async function (req, res) {
     catch (err) {
         res.status(500);
         res.send(`{"error": ${err}}`);
+    }
+}
+
+// Handle a show one view w/ id specified by query
+exports.donut_view_one_Page = async function (req, res){
+    console.log("single view for id " + req.query.id);
+    try {
+        result = await Donut.findById(req.query.id);
+        res.render('donutdetail', { title: 'Donut Detail', toShow: result });
+    }
+    catch (err) {
+        res.status(500);
+        res.send(`error: '${err}'`);
     }
 }
