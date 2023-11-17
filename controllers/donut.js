@@ -68,7 +68,7 @@ exports.donut_update_put = async function (req, res) {
 exports.donut_list = async function (req, res) {
     try {
         results = await Donut.find();
-        res.send(theDonuts);
+        res.send(results);
     }
     catch (err) {
         res.status(500);
