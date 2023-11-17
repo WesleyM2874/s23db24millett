@@ -78,9 +78,15 @@ exports.donut_list = async function (req, res) {
 
 // VIEWS
 // Handle a show all view
-exports.donut_view_all_Page = async function (req, res) {
+exports.donut_view_all_Page = async function ( req, res) {
     try {
         theDonuts = await Donut.find();
+        console.log('theDonuts' + theDonuts);
+        let results = [
+            { donutType: 'Glazed', numberOfDonuts: 2, xPrice: 4.0 },
+            { donutType: 'Frosted', numberOfDonuts: 5, xPrice: 7.0 },
+            { donutType: 'Cream', numberOfDonuts: 1, xPrice: 1.0 }
+        ];
         res.render('donuts', { title: 'Donut Search Results', results: theDonuts });
     }
     catch (err) {
