@@ -24,13 +24,15 @@ router.post('/register', function (req, res) {
           console.log("db creation issue " + err)
           return res.render('register', {
             title: 'Registration',
-            message: 'access error', account: req.body.username
+            message: 'access error',
+            account: req.body.username
           })
         }
         if (!user) {
           return res.render('register', {
             title: 'Registration',
-            message: 'access error', account: req.body.username
+            message: 'access error',
+            account: req.body.username
           })
         }
       })
