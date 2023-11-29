@@ -1,5 +1,5 @@
 var express = require('express');
-const donut_controlers= require('../controllers/donut');
+const donut_controlers = require('../controllers/donut');
 var router = express.Router();
 let results = [
   { donutType: 'Glazed', numberOfDonuts: 2, xPrice: 4.0 },
@@ -7,8 +7,21 @@ let results = [
   { donutType: 'Cream', numberOfDonuts: 1, xPrice: 1.0 }
 ];
 /* GET costumes */
-router.get('/', donut_controlers.donut_view_all_Page );
-//router.get('/update', donut_controlers.donut_update_Page);
+router.get('/', donut_controlers.donut_view_all_Page);
+
+// A little function to check if we have an authorized user and continue on or
+// redirect to login.
+const secured = (req, res, next) => {
+  if (req.user) {
+    return next();
+  }
+  res.redirect("/login");
+}
+
+/* GET update donut page */
+router.get('/update', secured, donut_controlers.donut_update_Page);
+
+
 
 
 //var express = require('express');

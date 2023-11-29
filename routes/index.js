@@ -1,13 +1,17 @@
 var express = require('express');
 var passport = require('passport');
 var router = express.Router();
-var Account = require('../models/account');
+var Account = require('../models/account')
+
+/* GET home page. */
 router.get('/', function (req, res) {
   res.render('index', { title: 'Donut App', user: req.user });
 });
+
 router.get('/register', function (req, res) {
   res.render('register', { title: 'Donut App Registration' });
 });
+
 router.post('/register', function (req, res) {
   Account.findOne({ username: req.body.username })
     .then(function (user) {
@@ -24,15 +28,13 @@ router.post('/register', function (req, res) {
           console.log("db creation issue " + err)
           return res.render('register', {
             title: 'Registration',
-            message: 'access error',
-            account: req.body.username
+            message: 'access error', account: req.body.username
           })
         }
         if (!user) {
           return res.render('register', {
             title: 'Registration',
-            message: 'access error',
-            account: req.body.username
+            message: 'access error', account: req.body.username
           })
         }
       })
@@ -50,20 +52,24 @@ router.post('/register', function (req, res) {
 router.get('/login', function (req, res) {
   res.render('login', { title: 'Donut App Login', user: req.user });
 });
+
 router.post('/login', passport.authenticate('local'), function (req, res) {
   res.redirect('/');
 });
+
 router.get('/logout', function (req, res) {
   req.logout(function (err) {
     if (err) { return next(err); }
     res.redirect('/');
   });
 });
+
 router.get('/ping', function (req, res) {
   res.status(200).send("pong!");
 });
-module.exports = router;
+
 router.get('/ping', function (req, res) {
   res.status(200).send("pong!");
 });
+
 module.exports = router;

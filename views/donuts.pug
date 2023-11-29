@@ -14,12 +14,19 @@ block content
 
   - let items = results
 
+  - let destination = `dispatch(\"/resource/create\")`
+  button.btn(class="btn-primary", onclick=destination) Create
+
   div(class="container-fluid")
     div(class="row m-1")
       each item in items
-        - let destination = `dispatch(\"/resource/update?id=${item._id}\")`
+        - let destination1 = `dispatch(\"/resource/update?id=${item._id}\")`
+        - let destination2 = `dispatch(\"/resource/detail?id=${item._id}\")`
+        - let destination3 = `dispatch(\"/resource/delete?id=${item._id}\")`
         div(class="row-sm-2", class="m-1") Item #{item.donut_type}(#{item.num}) is #{item.price}        
-          button.btn(class="btn-primary m1-1", onclick=destination) Update
+          button.btn(class="btn-primary m1-1", onclick=destination1) Update
+          button.btn(class="btn-primary m1-1", onclick=destination2) Details
+          button.btn(class="btn-primary m1-1", onclick=destination3) Delete
 
   script.
     function dispatch(path){
