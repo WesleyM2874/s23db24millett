@@ -3,6 +3,14 @@ var router = express.Router();
 // Require controller modules.
 var api_controller = require('../controllers/api');
 var donut_controller = require('../controllers/donut');
+
+const secured = (req, res, next) => {
+    if (req.user) {
+      return next();
+    }
+    res.redirect("/login");
+  }
+  
 /// API ROUTE ///
 // GET resources base.
 router.get('/', api_controller.api);
@@ -22,7 +30,7 @@ router.get('/detail', donut_controller.donut_view_one_Page);
 // GET create donut page
 router.get('/create', donut_controller.donut_create_Page);
 // GET create update page
-router.get('/update', donut_controller.donut_update_Page);
+router.get('/update', secured, donut_controller.donut_update_Page);
 // GET delete donut page
 router.get('/delete', donut_controller.donut_delete_Page);
 module.exports = router;

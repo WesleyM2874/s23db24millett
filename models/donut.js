@@ -1,7 +1,18 @@
 const mongoose = require("mongoose");
+
+const secured = (num) => {
+    return num >= 1 && num <= 999
+}
+
 const donutSchema = mongoose.Schema({
     donut_type: String,
-    num: String,
+    num: {
+        type: Number,
+        validate: {
+            validator: secured,
+            message: "Invalid value for num"
+        }
+    },
     price: Number,
 })
 
